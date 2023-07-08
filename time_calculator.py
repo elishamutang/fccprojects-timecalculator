@@ -42,9 +42,11 @@ def add_time(start, duration, *args):
             new_time_format = f"{EH}:{EM} {Sym} (next day)" #Make this new_time
             print(new_time_format)
         elif EH >= 24:
-            AM_PM_switch = EH/12
+            AM_PM_switch = EH/12 #PM is even, AM is odd
             Sym = ["PM" if AM_PM_switch%2==0 else "AM"] #switching between AM and PM
             EH = EH % 12
+            if EH == 0:
+                EH = 12
             new_time_format = f"{EH}:{EM} {Sym[0]} ({number_of_days} days later)"
             print(new_time_format)
 
