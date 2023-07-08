@@ -24,22 +24,49 @@ def add_time(start, duration, *args):
 
     #print(f"{EH}:{EM} {Sym}")
 
-    if EH >= 24: #Check if end time is more than 24 hrs, if True, then more than one day.
-        print("Next day mate")
-        num_of_days = round(EH/24)
-        print(num_of_days)
-        if "PM" in new_time:
-            if EH > 12:
-                Sym = "AM"
-                EH -= 12
-                if EH == 12:
-                    Sym = "PM"
-                if EM < 10:
-                    EM = (str(EM)).zfill(2)
-                else:
-                    pass
-                print(f"{EH}:{EM} {Sym}")
-        #elif "AM" in new_time:
+    number_of_days = round(EH/24)
+    print(f"{EH/24} days")
+
+    if EM < 10:
+        EM = (str(EM)).zfill(2)
+    
+
+    if "PM" in new_time:
+        if EH > 12 and EH < 24: # (next day) comment
+            if EH == 12:
+                Sym = "PM"
+            else:
+                pass
+            Sym = "AM"
+            EH = EH % 12
+            new_time_format = f"{EH}:{EM} {Sym} (next day)" #Make this new_time
+            print(new_time_format)
+        elif EH >= 24:
+            AM_PM_switch = EH/12
+            Sym = ["PM" if AM_PM_switch%2==0 else "AM"] #switching between AM and PM
+            EH = EH % 12
+            new_time_format = f"{EH}:{EM} {Sym[0]} ({number_of_days} days later)"
+            print(new_time_format)
+
+    if "AM" in new_time:
+        if EH <= 12:
+            if EH == 12:
+                Sym = "PM"
+                new_time_format = f"{EH}:{EM} {Sym}"
+                print(new_time_format)
+            else:
+                pass
+        elif EH > 12 and EH < 24:
+            Sym = "PM"
+            EH = EH % 12
+            new_time_format = f"{EH}:{EM} {Sym} (next day)"
+            print(new_time_format)
+        elif EH >= 24:
+            EH = EH % 12
+            new_time_format = f"{EH}:{EM} {Sym} ({number_of_days}) days later"
+            print(new_time_format)
+
+            
 
 
 
