@@ -94,17 +94,8 @@ def add_time(start, duration, *args):
                     new_time_format = f"{EH}:{EM} {Sym[0]} (next day)"
                 else:
                     new_time_format = f"{EH}:{EM} {Sym[0]}, ({number_of_days} days later)"
-                #new_time_format = f"{EH}:{EM} {Sym[0]} ({number_of_days} days later)"
 
 
 
 
-
-
-
-
-
-
-
-
-    return f"After: {new_time_format} Before: {new_time}"
+    return new_time_format
